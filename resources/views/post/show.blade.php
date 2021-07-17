@@ -2,7 +2,7 @@
 @section('content')
     <div class="primary">
         <div class="container-fluid mt-5">
-            <div class="col-10 offset-1">
+            <div class="col-10">
                 <div class="row border border-light border-2">
                     <div class="card bg-dark">
                         @foreach ($post as $mypost)
@@ -41,36 +41,47 @@
                                         </a>
                                     </div>
                                     <div class="col-8">
-                                        {{-- @foreach ($dis as $d)
-                                            {{ $d }}
-                                        @endforeach --}}
-                                      {{ $dis }}
-                                        <p>fkffmvnnfjn</p>
+
                                     </div>
                                 </div>
-
-                          
-
-
-
                             </div>
-                        
+
                     </div>
-                    <div class="row offset-1">
-                        <div class="col-1">
-                            <img src="{{ url('/') }}/uploads/{{ $mypost->picture }}"
-                                class="rounded-circle" width="50">
+                    <div class="row offset-2">
+                        <div class="d-none col-md-4 mx-auto reply">
+                            <form method="get" action="/show/reply">
+                                <div class="form-group">
+                                    <textarea id="my-textarea" class="form-control bg-dark text-light" name="" rows="2"></textarea>
+                                    <button type="submit">Post</button>
+                                </div>
+                            </form>
                         </div>
-                        <div class="col-6">
-                            <div class="border border-secondary">
-                                {{-- <p>{{ $mypost->discussion }}</p> --}}
-                            </div>
+                        <div class="col-md-12">
+                            @foreach ($dis as $discussion)
+                                <div class="row mb-3">
+                                    <div class="col-1">
+                                        <img src="{{ url('/') }}/uploads/{{ $discussion->picture }}"
+                                            class="rounded-circle" width="50">
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="border border-secondary p-2">
+                                            <p> {{ $discussion->discussion }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-10 mx-auto replybtn">
+                                        <i class="fa fa-reply"></i><p class="d-inline-flex"> Reply</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                           
                         </div>
-                       
+
                     </div>
+
                 </div>
             </div>
         </div>
+        
 
 
 
@@ -107,8 +118,12 @@
                         <button type="submit" class="btn mainbutton">Submit</button>
                     </div>
                     </form>
+
                 </div>
             </div>
         </div>
+        {{-- Reply --}}
+        
+     
     </div>
 @endsection

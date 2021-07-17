@@ -35,7 +35,8 @@ class PostModel extends Model
         return $discussion_post;
     }
     function getDisc($id){
-        $disc=DB::table('discussion')->join('post','post.post_id','=','discussion.post_disc_id')->where('post.post_id','=',$id);
+        $disc=DB::table('discussion') ->join('member_user', 'member_user.member_id', '=', 'discussion.member_disc_id')->where('post_disc_id','=',$id)->get();
         return $disc;
     }
+
 }

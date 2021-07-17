@@ -36,4 +36,5 @@ $(document).ready(function(){
         $("#page-content-wrapper").addClass('user');
         $("#up").removeClass("uprofile");
     })
+
 })

@@ -50,12 +50,14 @@ class PostController extends Controller
        
             $discussion=$request->input('discuss');
             $post_disc_id=$id;
+            $d = session('id');
             $to_insert=['discussion'=>$discussion,
-            'post_disc_id'=>$post_disc_id];
+            'post_disc_id'=>$post_disc_id,
+            'member_disc_id'=>$d];
             $id=$post->insertdisc($to_insert);
-            dd($id);
+            // dd($id);
            if($id){
-               return redirect('/profile');
+               return redirect('show/'.$post_disc_id);
            }
     }
  
@@ -64,15 +66,16 @@ class PostController extends Controller
     // }
     public function show($id,PostModel $post){
         $postid=$post->getPostId($id);
-        // $d = session('id');
-        // dd($d);
-        $disc=$post->getDisc(4);
+           foreach ($postid as $ps){
+            $d=($ps->post_id);
+        }
+      
+        
+        $disc=$post->getDisc($d);
+     
         return view('post.show',['post'=>$postid,'dis'=>$disc]);
     }
-    // public function p(PostModel $post){
-    //     $post_id=$post->getPostId($id);
-    //     $discussion=$post->getDisc($post_id);
-    // }
+  
   
     //
 }
